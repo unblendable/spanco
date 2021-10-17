@@ -13,7 +13,7 @@
         <el-input
           ref="username"
           v-model="loginForm.username"
-          placeholder="ชื่อผู้ใช้งาน"
+          placeholder="Username"
           name="username"
           type="text"
           tabindex="1"
@@ -30,7 +30,7 @@
           ref="password"
           v-model="loginForm.password"
           :type="passwordType"
-          placeholder="รหัสผ่าน"
+          placeholder="Password"
           name="password"
           tabindex="2"
           auto-complete="on"
@@ -41,7 +41,7 @@
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">เข้าสู่ระบบ</el-button>
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
 
 
     </el-form>
@@ -56,22 +56,22 @@ export default {
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
-        callback(new Error('กรุณาระบุชื่อผู้ใช้งาน'))
+        callback(new Error('Username required.'))
       } else {
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
       if (!value.length) {
-        callback(new Error('กรุณาระบุรหัสผ่าน'))
+        callback(new Error('Password required.'))
       } else {
         callback()
       }
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        username: null,
+        password: null
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],

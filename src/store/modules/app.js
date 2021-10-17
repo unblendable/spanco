@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie'
 
 const state = {
+  API_URL: 'http://localhost',
   sidebar: {
     opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
     withoutAnimation: false

@@ -1,6 +1,19 @@
 @charset "UTF-8";
+.block-21 .text .heading a,
+.sidebar-box .heading-sidebar,
+.dbox .text span,
+h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5{
+    font-weight: bold;
+}
+h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5,
 p{
     font-family: Arial, Helvetica, sans-serif !important;
+}
+p{
+    color: #B0B0B0;
+}
+.ftco-section .container{
+    position: relative;
 }
 .box-header .navbar-brand{
     text-transform:none;   
@@ -90,7 +103,6 @@ p{
 .about h3{ padding-left: 10px;}
 #about-section p{
     font-weight: bold;
-    color: #B0B0B0;
     margin-bottom: 30px;
 }
 #about-section p strong{
@@ -461,7 +473,7 @@ ul.list-green{
 .heading-section h3{
     font-weight: bold;
     font-size: 30px;
-    line-height: 30px;
+    line-height: 35px;
     font-family: Arial, Helvetica, sans-serif;
     margin-bottom: 20px;
 
@@ -479,8 +491,503 @@ ul.list-green{
 .ftco-section.bg-half-light.service-detail:after {
     height: 65%;
 }
+.appointment-form  .btn.btn-primary{
+    background: #FC5E28;
+    border: 1px solid #FC5E28!important;  
+}
+.appointment-form  .btn.btn-primary:hover{
+    background: #333;
+    border: 1px solid #333!important;  
+}
+.menu-about{
+    max-width: 680px;
+    margin: 0 auto ;
+}
+.menu-about ul{
+    padding: 0;
+    margin: 0;
+    float: left;
+    width: 100%;
+}
+.menu-about li{
+    list-style: none;
+    display: inline-block;
+    width: 25%;
+    float: left;
+    text-align: center;
+    padding: 10px;
+}
+.menu-about ul li a{
+    color: #000;
+    font-size: 13px;
+    line-height: 14px;
+    font-weight: bold;
+    box-shadow: 3px 3px 10px rgba(0,0,0,16%);
+    border-radius: 6px;
+    display: block;
+    padding: 14px 10px;
+}
+.menu-about ul li.active a,
+.menu-about ul li a:hover{
+    background-color: #FF5733;
+    color: #fff;
+}
+
+.ftco-section.menu-about{
+    padding-bottom: 0;
+}
+.history-left img{
+    width: 100%;
+}
+.history-logo{
+    line-height: 0;
+    margin-right: 20px;
+}
+.box-history-logo {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+.history-text{
+    padding-top: 23px;
+}
+.history-right{
+    padding-left: 20px;
+}
+.history-right h3{
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: bold;
+    width: 90%;
+}
+.history-right h3,
+.history-right p{
+    margin-bottom: 30px;
+}
+.history-right p{
+    font-size: 16px;
+}
+.history-right p strong{
+    color: #000;
+}
+
+.pl-30{
+    padding-left: 30px;
+}
+.history-left{
+    margin-bottom: 7rem;
+}
+.text-content p{
+    margin-bottom: 50px;
+}
+.about-quality .content-service-img{
+    margin-top: 80px;
+    margin-bottom: 50px;
+    right: 0;
+    left: -40px;
+}
+.content-service-img .row > div{
+   overflow: hidden;
+}
+.heading-section .subheading{
+    color: #99BA49;
+}
+.block-2 .front{
+    -webkit-box-shadow: 5px 5px 20px rgb(0 0 0 / 40%);
+    box-shadow: 5px 5px 20px rgb(0 0 0 / 40%);
+    background-image:url(../images/logo-white.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.block-2 .front:before{
+    display: none;
+}
+.block-2 .back p{
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 25%;
+    padding: 0 25px;
+}
+.block-2 .author .image{
+    height: 48px;
+    overflow: hidden;
+}
+.block-2 .author .image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.pr-30{
+    padding-right: 30px;
+}
+.img-corporate img{
+    max-width: 100%;
+}
+.img-corporate {
+    margin: 5rem 0;
+    text-align: center;
+}
+.box-date{
+    color: #fff;
+}
+.blog-entry{
+    box-shadow: 0 5px 20px rgba(0,0,0,2%);
+}
+.block-27 ul li a{
+    background-color: #fff;
+}
+.ftco-section.bg-half-light.blog-page:after {
+    height: 74%;
+}
+.blogdetail-page h2{
+    font-size: 30px;
+    line-height: 35px;
+}
+.block-21 .text .heading a{
+    font-size: 17px;
+    line-height: 22px;
+}
+.text-date{
+    color: #B3B3B3;
+}
+.tagcloud a{
+    color: #F55D29;
+}
+.box-back{
+    position: absolute;
+    top: -60px;
+    left: 15px;
+    font-size: 20px;
+}
+.contact-section .dbox a:hover,
+.box-back a{
+    color: #809A3C;
+}
+.box-back a:hover{
+    color: #000;
+}
+.contact-section .dbox a{
+    color: #999999;
+    line-height: 22px;
+}
+.contact-section .btn.btn-primary{
+    background-color:#FF5733 ;
+    border:1px solid #FF5733 !important;
+}
+.contact-section .btn.btn-primary:hover{
+    background-color:#333 ;
+    border:1px solid #333 !important;
+}
+.contact-section  .ftco-footer-social li a{
+    background-color:#F3F3F3;
+}
+.contact-section  .ftco-footer-social li a:hover{
+    background-color: #ccc;   
+}
+.contact-section  .ftco-footer-social{
+    margin-top: 20px;
+}
+.contact-follow .text{
+    margin-left: 50px;
+}
+.contact-section .contact-des{
+    margin: 50px 0;
+}
+.dbox{
+    margin-bottom: 50px;
+}
+.ftco-section.map-page{
+    padding-top: 0 !important;
+}
+.contact-map{
+    height: 350px;
+}
+.contact-map iframe{
+    width: 100%;
+    height: 100%;
+}
+.project .text h3{
+    text-transform: none;
+}
+.box-overview{
+    position: absolute;
+    right: 15px;
+    top: 40px;
+    z-index: 10;
+}
+.box-overview a{
+    font-size: 20px;
+    line-height: 20px;
+    color: #809A3C;
+}
+.box-overview a:hover{
+    content: #000;
+}
+.ftco-section.bg-half-light.project-page:after {
+    height: 70%;
+}
+.slider-text .bread span{
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+}
+.project-headline-left{
+    text-align: right;
+    padding-right: 70px;
+    position: relative;
+    top: 15px;
+}
+.project-headline-right h1{
+    font-size: 28px;
+    line-height: 35px;
+    margin-bottom: 20px;
+}
+.project-headline-right h5{
+    font-size: 18px;
+    line-height: 25px;
+    margin-bottom: 15px;
+}
+.project-headline-left{
+    padding-bottom: 30px;
+}
+.project-headline{
+    position: relative;
+}
+.project-headline::after{
+    height: 100%;
+    width: 5px;
+    position: absolute;
+    right: calc(50% + 20px );
+    top: 3px;
+    background-color: #7F993A;
+    content: '';
+}
+.text-green{
+    color: #06884F;
+}
+.content-project02{
+    background-color:#809A3C ;
+    position: relative;
+    padding:40px 40px 60px 70px;
+    color: #fff;
+}
+.projecdetail-page p{
+    margin-bottom: 30px;
+    color: #444444;
+}
+.projecdetail-page ul,
+.projecdetail-page p{
+    font-size: 15px;
+    line-height: 22px; 
+}
+.content-project02 h2,
+.content-project02 h3,
+.content-project02 h5,
+.content-project02 p{
+    color: #fff;
+
+}
+.content-project02 h5{
+    font-size:20px;
+    line-height: 26px;
+    max-width: 420px;
+    margin-bottom: 20px;
+}
+.content-project02 ul{
+    margin: 0 0 20px 0;
+    padding: 0 0 0 18px;
+    max-width: 370px;
+}
+.content-project02 ul:last-child{
+    margin: 0;
+}
+.content-project,
+.content-project01,
+.content-project02,
+.content-project03,
+.content-project04{
+    margin-bottom: 5rem;
+}
+.img-projectdetail01 img{
+    max-width: 100%;
+}
+.content-project03,
+.img-projectdetail01,
+.content-project02{
+    padding-left: 70px;
+}
+.img-projectdetail02{
+    position: relative;
+}
+.img-projectdetail02 img{
+    max-width: 100%;
+    position: absolute;
+    left: 0;
+    top: -130px;
+}
+.content-project04{
+    position: relative;
+    margin-left: 50%;
+    max-width: 400px;
+    padding-bottom: 1px;
+}
+.content-project04::after{
+    height: 100%;
+    width: 5px;
+    position: absolute;
+    left:-30px;
+    top: 3px;
+    background-color: #7F993A;
+    content: '';
+}
+.content-project03 img{
+    max-width: 100%;
+}
+.content-project-in h1,
+.content-project01 h2{
+    font-size: 40px;
+    line-height: 50px;
+    margin-bottom: 20px;
+}
+.content-project-in,
+.content-collapse{
+    position: relative;
+    padding: 5rem 0;
+}
+.content-project-in::after,
+.content-collapse::after{
+    content: '';
+    width: 150vw;
+    left: -25vw;
+    top: 0;
+    height: 100%;
+    z-index: -1;
+    background-color:#f8f9fa;
+    position: absolute;
+}
+.card-header .btn{
+    display: block;
+    width: 100%;
+    border: none;
+    text-align: left;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 25px;
+    padding: 20px 40px;
+    border-radius: 5px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-image: url(../images/icon-open.png);
+    background-position: calc(100% - 40px) 5px;
+    background-repeat: no-repeat;
+    text-transform: none;
+    padding-right: 80px;
+}
+.card-header .btn.collapsed{
+    background-image: url(../images/icon-close.svg);  
+}
+.btn:focus, .btn.focus{
+    -webkit-box-shadow: none;
+    box-shadow:none;   
+}
+.content-collapse .table{
+    border: none;
+    color: #444444;
+    margin-bottom: 30px;
+}
+.card-body thead tr{
+    background-color: #819A3C;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    overflow: hidden;
+}
+.table thead th:first-child{
+    border-radius: 9px 0 0 9px;
+}
+.table thead th:last-child{
+    border-radius: 0 9px 9px 0 ;
+}
+.table tbody td:first-child{
+    padding-left: 40px;
+}
+.table tbody td a{
+    color: #000;
+    font-weight: bold;
+}
+.table tbody td a:hover{
+    color: #819A3C;
+}
+.table thead th,
+.table tbody td{
+    font-size: 15px;
+    line-height: 22px;
+    border: none;
+    vertical-align: middle;
+}
+.table thead th{
+    padding: 14px 15px;  
+}
+.table tbody td{
+    padding: 20px 15px;
+}
+.table tbody tr:nth-child(even){
+    background-color: #fff;
+}
+.card-body > div{
+    padding:0 40px;
+    color: #444;
+}
+.card-body > div.table-responsive{
+    padding: 0;
+}
+.ftco-section.projectlist-page{
+    padding-bottom: 0 !important;
+}
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.cover-project img{
+    width: 100%;
+}
+.cover-project{
+    margin-bottom: 20px;
+}
+.content-project-in p,
+.content-project-in{
+    color:#444444;
+}
+.projectlist-page .box-headline h3{ max-width: 80%;}
+.project-des{
+    padding-left: 200px;
+    margin-bottom: 5rem;
+    min-height: 600px;
+}
+.project-location {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 50px;
+
+}
+.project-location > div{
+    margin-right: 30px;
+}
+.project-location > div:last-child{
+    margin-right: 100px;
+}
+.t-location03{
+    color:#819A3C ;
+}
 @media (max-width: 1200px){
     .ftco-services-2 .services .media-body h3{ width: 100%; font-size: 22px;}
+    .dbox p{ font-size: 14px; line-height: 20px;}
+    .img-projectdetail02 img{top: 0; position: relative;}
+    .project-des{ padding-left: 100px;}
 }
 @media (max-width: 1024px){
     .sliderbanner .slick-slider,
@@ -512,6 +1019,11 @@ ul.list-green{
     .box-list-service ul li a { font-size: 16px; line-height: 20px;}
     .content-list-service .col-sm-6:first-child{ padding-right: 15px;}
     .content-list-service .col-sm-6:last-child{ padding-left: 15px;}
+    .content-project,
+    .content-project01,
+    .content-project02,
+    .content-project03,
+    .content-project04,
     .content-service-detail, .content-service-des, .content-service-img, .service-intro,
     .content-service-des p{  margin-bottom: 30px; }
     .hero-wrap.hero-wrap-2,
@@ -520,7 +1032,26 @@ ul.list-green{
     .service-intro::after{ left: 80px;}
     .service-intro{ margin-top: 30px;}
     .content-service-img{ right: 0;}
-
+    .history-right{ padding-left: 0;}
+    .history-left,
+    .text-content p{  margin-bottom: 30px;}
+    .content-service-img{ overflow: hidden;}
+    .about-quality .content-service-img{ left: 0;}
+    .about-quality .content-service-img{ margin-top: 50px;}
+    .block-2, .block-2 .front, .block-2 .back{ height: 315px;;}
+    .block-2 .back p{ padding: 0 15px; top: 15%; line-height: 22px;}
+    .content-project03, .img-projectdetail01, .content-project02{ padding-left: 30px;}
+    .content-project02{ padding: 30px;}
+    .project-headline-right h1 {font-size: 23px; line-height: 30px;}
+    .card-header .btn ,
+    .project-headline-right h5{ font-size: 18px; line-height: 22px;}
+    .content-project-in h1, .content-project01 h2{ font-size: 35px;}
+    .box-overview a{ font-size: 15px;}
+    .table tbody td{ padding: 15px;}
+    .table tbody td:first-child{ padding-left: 15px;}
+    .card-header .btn{ padding-right: 50px; background-position: right 7px; background-size: auto 35px; padding: 15px;}
+    .project-location > div:last-child{  margin-right: 50px;}
+   
 }
 @media (max-width: 991px){
     .container { max-width: 100%;}
@@ -531,8 +1062,10 @@ ul.list-green{
     .box-header .navbar-brand{ font-size: 15px;}
     .box-header .pb-5{ padding-bottom: 1.5rem !important;}
     .ftco-services-2 .services{ width: 100%;}
+    .content-collapse,
     .ftco-section{ padding: 30px 0;}
     .ftco-services-2{position: relative; top: -30px;}
+    .content-project-in{ padding-top: 30px;}
     .pl-md-5.about-right{padding:20px 20px 0 10px !important}
     .about-wrap { height: 450px;}
     #about-section .video-image{ top: 0;}
@@ -548,19 +1081,34 @@ ul.list-green{
     .ftco-counter .icon img{ height: 60px;}
     .blog-entry .meta{ width: 80%;}
     .blog-entry .text{ padding: 20px 15px;}
+    .history-right h3,
     .blog-entry .text .heading{ font-size: 18px; line-height: 24px;}
     .block-20 { height: 175px;}
     .ftco-section .icon-more {  top: -20px;}
     .content-list-item ul li{ width: 33.3333333%; margin-bottom: 30px;}
     .box-list-service ul li{ margin-bottom: 10px;}
+    .history-right h3, .history-right p ,
     .box-head-green{ margin-bottom: 20px;}
     .box-list-service ul{ margin-bottom: 30px;}
     .content-service-img .row .col-md-4{ padding-left: 15px;}
+    .content-service-img img,
     .content-service-detail img{ margin-bottom: 15px;width: 100%;}
     .content-service-detail .box-sugges, .content-service-des, .service-intro{ padding-left: 30px;}
     .service-intro::after{ left: 0;}
     .slider-text .bread{ font-size: 40px;}
-    
+    .history-logo img{ height: 100px;}
+    .box-history-logo { margin-bottom: 10px;}
+    .about-quality .content-service-img{ margin: 30px 0;}
+    .block-2 .back p{ padding: 0 25px; top: 25%; line-height: 22px;}
+    .sidebar-box{ padding: 0; margin-top: 30px;}
+    .box-back { position: relative; top: 0; left: 0; margin-bottom: 20px;}
+    .block-9 .pl-md-5{ padding-left: 30px !important;}
+    .contact-section .contact-form{ padding: 30px !important;}
+    .ftco-section.map-page{ margin-bottom: 50px;}
+    .box-overview { position: relative; right: 0; top: 0;}
+    .projectlist-page .box-headline h3{ max-width: 100%; font-size:23px;}
+    .project-des{ padding-left: 0;}
+
 }
 @media (max-width: 767px){
     .ftco-footer p br{ display: none;}
@@ -594,6 +1142,7 @@ ul.list-green{
         margin: 0;
     }
     .sliderbanner .btn{font-size: 12px; margin-bottom: 10px;}
+    .heading-section p,
     .heading-section h4 {font-size: 14px;}
     #about-section .pt-md-4{ margin-bottom: 0 !important;}
     .pl-md-5.about-right{ padding:30px 15px 0 15px !important;}
@@ -605,5 +1154,44 @@ ul.list-green{
     .testimony-section .heading-section-white{ padding-left: 0;}
     .blog-entry .text{ padding: 20px 30px;}
     .content-list-item ul li{ width: 50%;}
-    
-}
+    .content-service-detail .box-sugges, .content-service-des,
+    .container .pl-30{ padding-left: 0;}
+    .col-md-12.pl-30,
+    .pl-30,.pl-30.text-center{ padding-left: 15px;}
+    .pr-30{ padding-right: 15px;}
+    .menu-about li{ width: 50%;}
+    .text-content p{ font-size: 15px; line-height: 24px;}
+    .menu-about{ max-width: 100%;}
+    .block-2 .back p{ max-width: 300px; margin: 0 auto 20px;}
+    .conten-corporate .pl-30,
+    .conten-corporate .pr-30{ padding: 0 15px;}
+    .img-corporate img{ max-width: 70%; display: block;  margin:  0 auto;}
+    .img-corporate{ margin:30px 0 50px 0;}
+    .contact-section .contact-des{ margin: 30px 0;}
+    .block-9 .pl-md-5{ padding-left: 15px !important;}
+    .dbox { margin-bottom: 20px !important;}
+    .contact-section .ftco-footer-social{ text-align: left;}
+    .heading-section h2 {
+        font-size: 25px;
+    }
+    .slider-text .bread {
+        font-size: 30px;
+        line-height: 30px;
+    }
+    .project-headline-left {
+        text-align: left;
+        padding-right: 0;
+        position: relative;
+        top: 0;
+        padding-left: 20px;
+    }
+    .project-headline::after{ right: auto; left: 0; height: 70px;}
+    .content-project03, .img-projectdetail01{ padding: 0;}
+    .img-projectdetail02{ margin-top: 30px;}
+    .content-project04{ margin: 0; max-width: 100%; padding-left: 30px;}
+    .content-project04::after{ left: 0;}
+    .img-projectdetail02,
+    .img-projectdetail01{ text-align: center;}
+    .content-collapse .table{ width: 700px;}
+    .project-location > div { margin-right: 15px; line-height: 23px;}
+s}
