@@ -4,9 +4,10 @@ const mysql = require('mysql');
 const path = require('path');
 const bodyParser = require('body-parser');
 const db = mysql.createConnection({   
-    host: 'localhost',
-    user: 'root',
-    password: 'banana',
+    host: 'mysql-5.5.chaiyohosting.com',
+    port: 3306,
+    user: 'admin1',
+    password: 'W4d3$v5m',
     database: 'span_db'
 })
 db.connect()
