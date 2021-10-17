@@ -5,14 +5,14 @@ const path = require('path');
 const http = require('http');
 const https = require('https');
 const bodyParser = require('body-parser');
-// const db = mysql.createConnection({   
-//     host: 'mysql-5.5.chaiyohosting.com',
-//     port: 3306,
-//     user: 'admin1',
-//     password: 'W4d3$v5m',
-//     database: 'span_db'
-// })
-// db.connect()
+const db = mysql.createConnection({   
+    host: 'mysql-5.5.chaiyohosting.com',
+    port: 3306,
+    user: 'admin1',
+    password: 'W4d3$v5m',
+    database: 'span_db'
+})
+db.connect()
 
 app.use(bodyParser.raw());
 app.use(bodyParser.json({ limit: "100mb", parameterLimit: 1000000 }));
@@ -46,7 +46,7 @@ var server = http.createServer(app);
 server.on('clientError', (err, socket) => {
     socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
 });
-var port = 80
+var port = 3000
 server.on('error',   (e)  =>  {   
     if  (e.code  ===  'EADDRINUSE')  {     
         console.log('Address in use, retrying...');     
@@ -58,7 +58,7 @@ server.on('error',   (e)  =>  {   
 });
 
 server.listen(port,  function ()  {
-    // global.mysql = db
+    global.mysql = db
     console.log(`Webserver is ready and listening on port ${port}`);
     console.log('opened server on',  server.address());
 });
