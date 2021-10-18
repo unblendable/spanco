@@ -3,7 +3,6 @@ const app = new express();
 const mysql = require('mysql');
 const path = require('path');
 const http = require('http');
-const https = require('https');
 const bodyParser = require('body-parser');
 const db = mysql.createConnection({   
     host: 'mysql-5.5.chaiyohosting.com',
@@ -46,7 +45,7 @@ var server = http.createServer(app);
 server.on('clientError', (err, socket) => {
     socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
 });
-var port = 3000
+var port = process.env.PORT || 80
 server.on('error',   (e)  =>  {   
     if  (e.code  ===  'EADDRINUSE')  {     
         console.log('Address in use, retrying...');     

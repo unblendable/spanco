@@ -1,5 +1,5 @@
 {
-  "name": "vue-admin-template",
+  "name": "spanco",
   "version": "4.4.0",
   "description": "A vue admin template with Element UI & axios & iconfont & permission control & lint",
   "author": "Pan <panfree23@gmail.com>",
@@ -67,7 +67,7 @@
     "last 2 versions"
   ],
   "engines": {
-    "node": ">=8.9",
+    "node": "8.17.0",
     "npm": ">= 3.0.0"
   },
   "license": "MIT"
