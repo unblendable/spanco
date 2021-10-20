@@ -1,40 +1,9 @@
 const express = require('express');
 const app = new express();
-const mysql = require('mysql');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
-
-const db_config = {   
-    host: 'mysql-5.5.chaiyohosting.com',
-    port: 3306,
-    user: 'admin1',
-    password: 'W4d3$v5m',
-    database: 'span_db'
-}
-var connection;
-function handleDisconnect() {
-    connection = mysql.createConnection(db_config); // Recreate the connection, since
-    // the old one cannot be reused.
-
-    connection.connect(function(err) { // The server is either down
-        if (err) { // or restarting (takes a while sometimes).
-            console.log('error when connecting to db:', err);
-            setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
-        } // to avoid a hot loop, and to allow our node script to
-    }); // process asynchronous requests in the meantime.
-    // If you're also serving http, display a 503 error.
-    connection.on('error', function(err) {
-        console.log('db error', err);
-        if (err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
-            handleDisconnect(); // lost due to either server restart, or a
-        } else { // connnection idle timeout (the wait_timeout
-            throw err; // server variable configures this)
-        }
-    });
-}
-
-handleDisconnect();
+// const sql = require('./db');
 
 app.use(bodyParser.raw());
 app.use(bodyParser.json({ limit: "100mb", parameterLimit: 1000000 }));
@@ -80,7 +49,7 @@ server.on('error',   (e)  =>  {   
 });
 
 server.listen(port,  function ()  {
-    global.mysql = connection
+    // global.mysql = sql
     console.log(`Webserver is ready and listening on port ${port}`);
     console.log('opened server on',  server.address());
 });
