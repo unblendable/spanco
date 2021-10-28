@@ -79,7 +79,9 @@
         <el-avatar shape="square" :size="350" :src="url"></el-avatar>
       </div>
       <h3>{{ form.title }}</h3>
-      <span v-html="form.body"></span>
+      <div style="width: 100%;">
+        <span v-html="form.body"></span>
+      </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogView = false">Cancel</el-button>
         <el-button type="primary" @click="dialogView = false">Confirm</el-button>

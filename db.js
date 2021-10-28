@@ -3,15 +3,19 @@ var mysql = require('mysql');
 
 var db_config = {
     host: 'mysql-5.5.chaiyohosting.com',
+    // host: 'localhost',
     port: 3306,
-    user: 'admin1',
-    password: 'W4d3$v5m',
-    database: 'span_db',
+    user: 'admin2',
+    password: 'uxJ8b6#9',
+    // user: 'root',
+    // password: 'banana',
+    database: 'span_ldb',
     multipleStatements: true
 };
 var connection;
 
 function handleDisconnect() {
+    console.log('connecting to db ...')
     connection = mysql.createConnection(db_config); // Recreate the connection, since
     // the old one cannot be reused.
 

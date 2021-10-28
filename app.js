@@ -3,7 +3,7 @@ const app = new express();
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
-// const sql = require('./db');
+const sql = require('./db');
 
 app.use(bodyParser.raw());
 app.use(bodyParser.json({ limit: "100mb", parameterLimit: 1000000 }));
@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ limit: "100mb",  extended: true, parameterLimit:
 app.use('/', express.static(path.join(__dirname,'/old_web')));
 app.use('/new', express.static(path.join(__dirname,'/frontend')));
 app.use('/static', express.static(path.join(__dirname,"/dist/static/"))); 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, '/public')));
 app.get('/backend', function(req,res) {
    res.sendFile('index.html', { root: path.join(__dirname, '/dist/') });
 });
@@ -33,7 +33,6 @@ app.use(function(req, res, next) {
 require('./src/api')(app);
 
 var server = http.createServer(app);
-
 server.on('clientError', (err, socket) => {
     socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
 });
@@ -49,7 +48,11 @@ server.on('error',   (e)  =>  {   
 });
 
 server.listen(port,  function ()  {
-    // global.mysql = sql
+    global.mysql = sql
+    sql.query('SELECT "somethin"', (err, result)=>{
+        if(err) throw err
+        console.log(result)
+    })
     console.log(`Webserver is ready and listening on port ${port}`);
     console.log('opened server on',  server.address());
 });

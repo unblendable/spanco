@@ -4,7 +4,8 @@ const today = new Date()
 const multipartUpload = multer({
         storage: multer.diskStorage({
             destination: function (req, file, callback) { callback(null, 'public/images/uploads');},
-            filename: function (req, file, callback) { callback(null, file.originalname.split('.').join('-sv-'+today.getHours()+'.'));}
+            filename: function (req, file, callback) { callback(null, file.originalname.split('.').join('-sv-'+today.getHours()+'.'));},
+            limits: { fieldSize: 25 * 1024 * 1024 }
         })
     });
 const handleResponse = function(res, data){
