@@ -82,7 +82,7 @@
                 v-for="item in provinces"
                 :key="item.id"
                 :label="item.name_en+', Thailand'"
-                :value="item.id">
+                :value="item.name_en+', Thailand'">
               </el-option>
             </el-select>
           </el-form-item>

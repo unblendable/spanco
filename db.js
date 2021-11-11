@@ -1,14 +1,14 @@
-var mysql = require('mysql');
+var mysql = require('mysql2');
 
 
 var db_config = {
-    host: 'mysql-5.5.chaiyohosting.com',
-    // host: 'localhost',
+    // host: 'mysql-5.5.chaiyohosting.com',
+    host: '127.0.0.1',
     port: 3306,
-    user: 'admin2',
-    password: 'uxJ8b6#9',
-    // user: 'root',
-    // password: 'banana',
+    // user: 'admin2',
+    // password: 'uxJ8b6#9',
+    user: 'root',
+    password: 'banana',
     database: 'span_ldb',
     multipleStatements: true
 };
