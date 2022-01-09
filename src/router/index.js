@@ -98,6 +98,17 @@ export const constantRoutes = [
       meta: { title: 'Contact', icon: 'el-icon-edit-outline' },
     }]
   },
+  {
+    path: '/inquire',
+    component: Layout,
+    redirect: '/inquire/list',
+    children: [{
+      path: 'list',
+      name: 'inquire',
+      component: () => import('@/views/inquire/index'),
+      meta: { title: 'Inquire', icon: 'el-icon-edit-outline' },
+    }]
+  },
   // {
   //   path: '/example',
   //   component: Layout,

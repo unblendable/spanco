@@ -1,14 +1,14 @@
-var mysql = require('mysql2');
+var mysql = require('mysql');
 
 
 var db_config = {
-    // host: 'mysql-5.5.chaiyohosting.com',
-    host: '127.0.0.1',
+    host: 'mysql-5.5.chaiyohosting.com',
+    // host: '127.0.0.1',
     port: 3306,
-    // user: 'admin2',
-    // password: 'uxJ8b6#9',
-    user: 'root',
-    password: 'banana',
+    user: 'admin2',
+    password: 'uxJ8b6#9',
+    // user: 'root',
+    // password: 'banana',
     database: 'span_ldb',
     multipleStatements: true
 };
@@ -23,6 +23,11 @@ function handleDisconnect() {
         if (err) { // or restarting (takes a while sometimes).
             console.log('error when connecting to db:', err);
             setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
+        }else{
+            connection.query('SELECT "connected"', (err, result)=>{
+                if(err) throw err
+                console.log(result)
+            })
         } // to avoid a hot loop, and to allow our node script to
     }); // process asynchronous requests in the meantime.
     // If you're also serving http, display a 503 error.

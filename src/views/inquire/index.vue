@@ -1,24 +1,28 @@
 <template>
   <div class="app-container">
-    <h3>Contact</h3>
+    <h3>Inquire</h3>
     <el-table
-      :data="contact_list"
+      :data="inquire_list"
       style="width: 100%">
       <el-table-column
         label="Date"
         prop="date">
       </el-table-column>
       <el-table-column
-        label="Name"
-        prop="name">
+        label="Firstname"
+        prop="fname">
       </el-table-column>
       <el-table-column
-        label="E-mail"
-        prop="email">
+        label="Lastname"
+        prop="lname">
       </el-table-column>
       <el-table-column
-        label="Subject"
-        prop="subject">
+        label="Tel."
+        prop="phone">
+      </el-table-column>
+      <el-table-column
+        label="Service name"
+        prop="service_name">
       </el-table-column>
       <el-table-column
         label="Message"
@@ -40,19 +44,22 @@
       </el-table-column>
     </el-table>
 
-    <el-dialog title="Contact" :visible.sync="dialogView" width="80%">
+    <el-dialog title="inquire" :visible.sync="dialogView" width="80%">
       <el-form :label-position="'top'" label-width="100px" >
         <el-form-item label="Date">
           {{dialogForm.date}}
         </el-form-item>
-        <el-form-item label="Name">
-          {{dialogForm.fullname}}
+        <el-form-item label="Firstname">
+          {{dialogForm.fname}}
         </el-form-item>
-        <el-form-item label="E-mail">
-          {{dialogForm.email}}
+        <el-form-item label="Lastname">
+          {{dialogForm.lname}}
         </el-form-item>
-        <el-form-item label="Subject">
-          {{dialogForm.subject}}
+        <el-form-item label="Tel.">
+          {{dialogForm.phone}}
+        </el-form-item>
+        <el-form-item label="Service name">
+          {{dialogForm.service_name}}
         </el-form-item>
         <el-form-item label="Message">
           {{dialogForm.message}}
@@ -72,23 +79,7 @@ export default {
   data() {
     return {
       API_URL: 'localhost',
-      tableData: [{
-        date: '2016-05-03',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
-      }, {
-        date: '2016-05-02',
-        name: 'John',
-        address: 'No. 189, Grove St, Los Angeles'
-      }, {
-        date: '2016-05-04',
-        name: 'Morgan',
-        address: 'No. 189, Grove St, Los Angeles'
-      }, {
-        date: '2016-05-01',
-        name: 'Jessy',
-        address: 'No. 189, Grove St, Los Angeles'
-      }],
+      tableData: [],
       search: '',
       dialogFormVisible: false,
       form: {
@@ -103,7 +94,7 @@ export default {
         body: ''
       },
       formLabelWidth: '120px',
-      contact_list : [],
+      inquire_list : [],
       dialogView: false,
       dialogForm: {}
     }
@@ -115,13 +106,13 @@ export default {
     this.API_URL = url.join('://')
   },
   mounted(){
-    this.contact_list = []
-    axios.get(this.API_URL+'/contact/contact_list').then((response)=>{
+    this.inquire_list = []
+    axios.get(this.API_URL+'/contact/inquire_list').then((response)=>{
       if(response.data.data){
         for(let item of response.data.data){
           item.date = item.created_at.split('T')[0]
         }
-        this.contact_list = response.data.data
+        this.inquire_list = response.data.data
       }
     })
   },
@@ -140,13 +131,13 @@ export default {
         cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
-        axios.post(this.API_URL+'/contact/contact_del', {id: row.id}).then((response)=>{
+        axios.post(this.API_URL+'/contact/inquire_del', {id: row.id}).then((response)=>{
           if(response.status === 200){
             this.$message({
               type: 'success',
               message: 'Delete completed'
             });
-            this.contact_list.splice(index, 1)
+            this.inquire_list.splice(index, 1)
           }
         })
         

@@ -26,10 +26,9 @@ const add_blog = async function(req, res){
         filename,
         req.body.title,
         req.body.tag,
-        req.body.location,
         req.body.body
     ]
-    var sql = "INSERT INTO blog(title_img, title, tag, location, body) VALUES(?, ?, ?, ?, ?) ";
+    var sql = "INSERT INTO blog(title_img, title, tag, body) VALUES(?, ?, ?, ?) ";
     mysql.query(sql, binding, (err, result)=>{
         if(err) throw err
         result.filename = filename
@@ -40,15 +39,15 @@ const edit_blog = async function(req, res){
     var binding = []
     if(req.file){
         var filename = req.file.filename
-        binding = [filename, req.body.title, req.body.body, req.body.id]
-        var sql = "UPDATE blog SET title_img = ? , title = ? , tag = ? , location = ? , body = ? , created_at = NOW() WHERE id = ? ";
+        binding = [filename, req.body.title, req.body.tag, req.body.body, req.body.id]
+        var sql = "UPDATE blog SET title_img = ? , title = ? , tag = ? , body = ? , created_at = NOW() WHERE id = ? ";
         mysql.query(sql, binding, (err, result)=>{
             if(err) throw err
             return handleResponse(res, result)
         })
     }else{
-        binding = [req.body.title, req.body.body, req.body.id]
-        var sql = "UPDATE blog SET title = ? , tag = ? , location = ? , body = ? , created_at = NOW() WHERE id = ? ";
+        binding = [req.body.title, req.body.tag, req.body.body, req.body.id]
+        var sql = "UPDATE blog SET title = ? , tag = ? , body = ? , created_at = NOW() WHERE id = ? ";
         mysql.query(sql, binding, (err, result)=>{
             if(err) throw err
             return handleResponse(res, result)

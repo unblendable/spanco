@@ -22,10 +22,6 @@
         prop="tag">
       </el-table-column>
       <el-table-column
-        label="Location"
-        prop="location">
-      </el-table-column>
-      <el-table-column
         label="Upload date"
         prop="created_at">
       </el-table-column>
@@ -57,6 +53,9 @@
         <el-form ref="form" :model="form" label-width="120px" label-position="top">
           <el-form-item label="Title">
             <el-input v-model="form.title"></el-input>
+          </el-form-item>
+          <el-form-item label="Tag">
+            <el-input v-model="form.tag"></el-input>
           </el-form-item>
           <el-form-item label="Title Image">
             <el-upload
@@ -106,7 +105,6 @@ export default {
       form: {
         title: null,
         tag: null,
-        location: null,
         body: null
       },
       formLabelWidth: '120px',
@@ -140,43 +138,44 @@ export default {
       let msg = 'Success'
       let formdata = new FormData()
       formdata.append('title', this.form.title)
+      formdata.append('tag', this.form.tag)
       formdata.append('body', this.form.body)
 
-        if(this.form.title && this.form.body){
-          var today = new Date()
-          if(this.editIndex < 0){
-            //ADD
-            if(this.file) formdata.append('file', this.file)
-            let result = await axios.post(this.API_URL+'/blog/add', formdata)
-            if(result.data.data.insertId){
-              this.blogs.push({
-                id: result.data.data.insertId,
-                filename: result.data.data.filename,
-                filepath: this.API_URL+'/images/uploads/'+result.data.data.filename,
-                title: this.form.title,
-                body: this.form.body,
-                created_at: today.toISOString().split('T')[0]
-              })
-            }
-            msg = 'Add blog completed'
-          }else{
-            //EDIT
-            formdata.append('id', this.blogs[this.editIndex].id)
-            if(this.file) formdata.append('file', this.file)
-            let result = await axios.post(this.API_URL+'/blog/update', formdata)
-            if(result.data.data.affectedRows){
-              this.blogs[this.editIndex].title = this.form.title
-              this.blogs[this.editIndex].body = this.form.body
-              if(this.file){
-                var new_filename = this.file.name.split('.').join('-bl-'+today.getHours()+'.')
-                this.blogs[this.editIndex].filename = new_filename
-                this.blogs[this.editIndex].filepath = this.API_URL+'/images/uploads/'+new_filename
-              }
-              this.blogs[this.editIndex].created_at = today.toISOString().split('T')[0]
-            }
-            msg = 'Update blog completed'
-          }
+      var today = new Date()
+      if(this.editIndex < 0){
+        //ADD
+        if(this.file) formdata.append('file', this.file)
+        let result = await axios.post(this.API_URL+'/blog/add', formdata)
+        if(result.data.data.insertId){
+          this.blogs.push({
+            id: result.data.data.insertId,
+            filename: result.data.data.filename,
+            filepath: this.API_URL+'/images/uploads/'+result.data.data.filename,
+            title: this.form.title,
+            tag: this.form.tag,
+            body: this.form.body,
+            created_at: today.toISOString().split('T')[0]
+          })
         }
+        msg = 'Add blog completed'
+      }else{
+        //EDIT
+        formdata.append('id', this.blogs[this.editIndex].id)
+        if(this.file) formdata.append('file', this.file)
+        let result = await axios.post(this.API_URL+'/blog/update', formdata)
+        if(result.data.data.affectedRows){
+          this.blogs[this.editIndex].title = this.form.title
+          this.blogs[this.editIndex].tag = this.form.tag
+          this.blogs[this.editIndex].body = this.form.body
+          if(this.file){
+            var new_filename = this.file.name.split('.').join('-bl-'+today.getHours()+'.')
+            this.blogs[this.editIndex].filename = new_filename
+            this.blogs[this.editIndex].filepath = this.API_URL+'/images/uploads/'+new_filename
+          }
+          this.blogs[this.editIndex].created_at = today.toISOString().split('T')[0]
+        }
+        msg = 'Update blog completed'
+      }
       this.$message({
           type: 'success',
           message: msg
