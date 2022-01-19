@@ -67,8 +67,9 @@
         </div>
     </nav>
     <section>
-        <div class="sliderbanner">
+        <div class="sliderbanner" id="main-banner">
             <div class="hero-wrap js-fullheight"
+                id="banner-01"
                 style="background-image:url('images/bigbanner01.jpg')"
                 data-stellar-background-ratio="0.5">
                 <div class="overlay"></div>
@@ -76,8 +77,8 @@
                     <div class="row no-gutters slider-text js-fullheight align-items-top" data-scrollax-parent="true">
                         <div class="col-lg-10 ftco-animate">
                             <div class="controltext-banner">
-                                <h1 class="mb-4">WE THINK ALL OF THE GREATEST PROJECTS</h1>
-                                <p class="mb-4 bannerdes">Span Company Limited was established in 1978 as a
+                                <h1 class="mb-4" id="banner-title-01">WE THINK ALL OF THE GREATEST PROJECTS</h1>
+                                <p class="mb-4 bannerdes" id="banner-desc-01">Span Company Limited was established in 1978 as a
                                     Thai national engineering consultant with a commitment to develop 
                                     and upgrade engineering consulting services to "World standards".</p>
                                 <p><a href="http://www.spancompany.com/services.html" class="btn btn-primary">Our Services</a> <a href="index.html#"
@@ -89,6 +90,7 @@
                 </div>
             </div>
             <div class="hero-wrap js-fullheight"
+                id="banner-02"
                 style="background-image:url('images/bigbanner02.jpg')"
                 data-stellar-background-ratio="0.5">
                 <div class="overlay"></div>
@@ -96,8 +98,8 @@
                     <div class="row no-gutters slider-text js-fullheight align-items-top" data-scrollax-parent="true">
                         <div class="col-lg-10 ftco-animate">
                             <div class="controltext-banner">
-                                <h1 class="mb-4">WE THINK ALL OF THE GREATEST PROJECTS</h1>
-                                <p class="mb-4 bannerdes">Span Company Limited was established in 1978 as a
+                                <h1 class="mb-4" id="banner-title-02">WE THINK ALL OF THE GREATEST PROJECTS</h1>
+                                <p class="mb-4 bannerdes" id="banner-desc-02">Span Company Limited was established in 1978 as a
                                     Thai national engineering consultant with a commitment to develop 
                                     and upgrade engineering consulting services to "World standards".</p>
                                 <p><a href="index.html#" class="btn btn-primary">Our Services</a> <a href="index.html#"
@@ -109,6 +111,7 @@
                 </div>
             </div>
             <div class="hero-wrap js-fullheight"
+                id="banner-03"
                 style="background-image:url('images/bigbanner03.jpg')"
                 data-stellar-background-ratio="0.5">
                 <div class="overlay"></div>
@@ -116,8 +119,8 @@
                     <div class="row no-gutters slider-text js-fullheight align-items-top" data-scrollax-parent="true">
                         <div class="col-lg-10 ftco-animate">
                             <div class="controltext-banner">
-                                <h1 class="mb-4">WE THINK ALL OF THE GREATEST PROJECTS</h1>
-                                <p class="mb-4 bannerdes">Span Company Limited was established in 1978 as a
+                                <h1 class="mb-4" id="banner-title-03">WE THINK ALL OF THE GREATEST PROJECTS</h1>
+                                <p class="mb-4 bannerdes" id="banner-desc-03">Span Company Limited was established in 1978 as a
                                     Thai national engineering consultant with a commitment to develop 
                                     and upgrade engineering consulting services to "World standards".</p>
                                 <p><a href="index.html#" class="btn btn-primary">Our Services</a> <a href="index.html#"
@@ -482,7 +485,7 @@
                     <h2 class="mb-4">Latest Projects</h2>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="project-container">
                 <div class="col-md-4 col-sm-6">
                     <div class="project">
                         <a href="http://spancompany.com/project-detail02.html" class="img d-flex align-items-center"
@@ -950,7 +953,7 @@
                     dataType: "json",
                     success: function (result, status, xhr) {
                         alert("Message has been sent successfully.")
-                        window.location.href="/new"
+                        window.location.href="/index.html"
                     },
                     error: function (xhr, status, error) {
                         alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
@@ -963,7 +966,48 @@
                 url: api_url+"/banner/list",
                 dataType: "json",
                 success: function (result, status, xhr) {
-                    console.log(result)
+                    $('#banner-01').css('background-image', `url('images/uploads/${result.data[0].filename}')`);
+                    $('#banner-title-01').html(result.data[0].title);
+                    $('#banner-desc-01').html(result.data[0].description);
+
+                    $('#banner-02').css('background-image', `url('images/uploads/${result.data[1].filename}')`);
+                    $('#banner-title-02').html(result.data[1].title);
+                    $('#banner-desc-02').html(result.data[1].description);
+
+                    $('#banner-03').css('background-image', `url('images/uploads/${result.data[2].filename}')`);
+                    $('#banner-title-03').html(result.data[2].title);
+                    $('#banner-desc-03').html(result.data[2].description);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                }
+            });
+            
+            $.ajax({
+                type: "GET",
+                url: api_url+"/project/list?page=1&pageSize=6",
+                dataType: "json",
+                success: function (result, status, xhr) {
+                    $('#project-container').empty()
+                    for(let item of result.data){
+                        var html = `<div class="col-md-4 col-sm-6">
+                                    <div class="project">
+                                        <a href="${window.location.origin}/project-detail.html?p=${item.id}" class="img d-flex align-items-center"
+                                            style="background-image:url('images/uploads/${item.title_img}')">
+                                            <div class="icon d-flex align-items-center justify-content-center mb-5">
+                                                <span class="fa fa-plus"></span>
+                                            </div>
+                                        </a>
+                                        <div class="text">
+                                            <span class="subheading">${item.category_name}</span>
+                                            <h3>${item.title}</h3>
+                                            <p><span class="fa fa-map-marker mr-1"></span>${item.location}</p>
+                                        </div>
+                                    </div>
+                                </div>`
+                        $('#project-container').append(html)
+                    }
+                    
                 },
                 error: function (xhr, status, error) {
                     console.error("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)

@@ -53,7 +53,17 @@
         </template>
       </el-table-column>
     </el-table>
-
+    <div align="center" style="padding-top: 30px">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        @current-page="dataPage"
+        @current-change="onPageChange"
+        :total="total"
+        :page-size="5"
+        >
+      </el-pagination>
+    </div>
     <el-dialog :title="dialogTitle" :visible.sync="dialogForm" width="80%">
         <el-form ref="form" :model="form" label-width="120px" label-position="top">
           <el-form-item label="Title">
@@ -140,7 +150,6 @@ export default {
   data() {
     return {
       API_URL: 'localhost',
-      search: '',
       form: {
         title: null,
         tag: null,
@@ -161,7 +170,9 @@ export default {
       dialogView: false,
       projects: [],
       categories: [],
-      provinces: []
+      provinces: [],
+      dataPage: 1,
+      total: 0
     }
   },
   created(){
@@ -172,13 +183,7 @@ export default {
   },
   async mounted(){
     this.projects = []
-    let result = await axios.get(this.API_URL+'/project/list')
-    for(let item of result.data.data){
-      item.created_at = item.created_at.split('T')[0]
-      item.filepath = this.API_URL+'/images/uploads/'+item.title_img
-      this.projects.push(item)
-    }
-
+    this.getData()
     let category = await axios.get(this.API_URL+'/project_category/list')
     this.categories = category.data.data
 
@@ -187,6 +192,15 @@ export default {
 
   },
   methods: {
+    async getData(){
+      let result = await axios.get(this.API_URL+'/project/list?page='+this.dataPage)
+      for(let item of result.data.data){
+        item.created_at = item.created_at.split('T')[0]
+        item.filepath = this.API_URL+'/images/uploads/'+item.title_img
+        this.projects.push(item)
+        this.total = item.total
+      }
+    },
     async submitDialog(){
       this.dialogForm = false
 
@@ -221,7 +235,8 @@ export default {
             if(this.file) formdata.append('file', this.file)
             let result = await axios.post(this.API_URL+'/project/add', formdata)
             if(result.data.data.insertId){
-              this.projects.push({
+              this.projects.pop()
+              this.projects.unshift({
                 id: result.data.data.insertId,
                 filename: result.data.data.filename,
                 filepath: this.API_URL+'/images/uploads/'+result.data.data.filename,
@@ -306,7 +321,7 @@ export default {
         type: 'warning'
       }).then(() => {
         axios.post(this.API_URL+'/project/remove', row)
-        this.projects.splice(index, 1)
+        this.getData()
         this.$message({
           type: 'success',
           message: 'Delete completed'
@@ -323,6 +338,11 @@ export default {
       this.file = e.raw;
       this.url = URL.createObjectURL(this.file);
     },
+    onPageChange(pageNum){
+      this.dataPage = pageNum
+      this.projects = []
+      this.getData()
+    }
   },
 }
 </script>

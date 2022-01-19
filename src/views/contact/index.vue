@@ -10,7 +10,7 @@
       </el-table-column>
       <el-table-column
         label="Name"
-        prop="name">
+        prop="fullname">
       </el-table-column>
       <el-table-column
         label="E-mail"
@@ -21,6 +21,8 @@
         prop="subject">
       </el-table-column>
       <el-table-column
+        show-overflow-tooltip 
+        height="200"
         label="Message"
         prop="message">
       </el-table-column>

@@ -15,17 +15,34 @@ const handleResponse = function(res, data){
     })
 }
 const project_list = async function(req, res){
+    let pageSize = req.query.pageSize > 0 ? +req.query.pageSize : 5
+    let page = req.query.page > 0 ? +req.query.page : 1
+    let start = (page - 1) * pageSize
+    let binding = [start, pageSize]
     var sql = `SELECT
-                    projects.*,
-                    project_category.id AS category_id,
-                    project_category.name AS category_name
-                FROM projects 
-                LEFT JOIN project_category ON project_category.id = projects.category_id `;
-    mysql.query(sql, (err, result)=>{
+                projects.*,
+                project_category.id AS category_id,
+                project_category.name AS category_name,
+                (SELECT COUNT(id) FROM projects) AS total
+            FROM projects 
+            LEFT JOIN project_category ON project_category.id = projects.category_id
+            ORDER BY id DESC
+            LIMIT ? , ?  `;
+    mysql.query(sql, binding, (err, result)=>{
         if(err) throw err
         return handleResponse(res, result)
     })
 }
+
+const project_detail = async function(req, res){
+    let id = req.body.id
+    if(!(id > 0)) return handleResponse(res, [])
+    mysql.query('SELECT * FROM projects WHERE id = ? ', [id], (err, result)=>{
+        if(err) throw err
+        return handleResponse(res, result)
+    })
+}
+
 const add_project = async function(req, res){
     var filename = req.file ? req.file.filename : null
     var binding = [
@@ -119,5 +136,6 @@ router
     .post('/add', multipartUpload.single('file') ,add_project)
     .post('/update', multipartUpload.single('file') ,edit_project)
     .post('/remove', del_project)
+    .post('/detail', project_detail)
 
 module.exports = router;

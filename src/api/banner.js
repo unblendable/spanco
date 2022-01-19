@@ -16,7 +16,7 @@ const handleResponse = function(res, data){
 }
 
 const banner_list = async function(req, res){
-    var sql = "SELECT * FROM main_banner";
+    var sql = "SELECT * FROM main_banner ORDER BY id DESC";
     mysql.query(sql, (err, result)=>{
         if(err) throw err
         return handleResponse(res, result)

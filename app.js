@@ -36,7 +36,7 @@ var server = http.createServer(app);
 server.on('clientError', (err, socket) => {
     socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
 });
-var port = process.env.PORT || 80
+var port = 80
 server.on('error', (e) => {
     if (e.code === 'EADDRINUSE') {
         console.log('Address in use, retrying...');

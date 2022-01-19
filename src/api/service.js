@@ -67,9 +67,16 @@ const del_service = async function(req, res){
         return handleResponse(res, 'Item not found.');
     }
 }
+
+const store_img = async function(req, res){
+    console.log(req.file)
+    return 
+}
+
 router
     .get('/list', service_list)
     .post('/add', multipartUpload.single('file') ,add_service)
     .post('/update', multipartUpload.single('file') ,edit_service)
     .post('/remove', del_service)
+    .post('/store_img', multipartUpload.single('file'), store_img)
 module.exports = router;
