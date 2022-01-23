@@ -15,7 +15,11 @@ const handleResponse = function(res, data){
     })
 }
 const blog_list = async function(req, res){
-    mysql.query("SELECT * FROM blog", (err, result)=>{
+    let pageSize = req.query.pageSize > 0 ? +req.query.pageSize : 5
+    let page = req.query.page > 0 ? +req.query.page : 1
+    let start = (page - 1) * pageSize
+    let binding = [start, pageSize]
+    mysql.query("SELECT *, (SELECT COUNT(id) FROM blog) total FROM blog ORDER BY id DESC LIMIT ? , ? ", binding, (err, result)=>{
         if(err) throw err
         return handleResponse(res, result)
     })

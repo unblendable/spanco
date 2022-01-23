@@ -88,7 +88,7 @@
                         <h2 class="mb-4">Engineering Consultants</h2>
                     </div>
                 </div>
-                <ul>
+                <ul id="ul-services">
                     <li>
                         <div class="box-fullthumbnail">
                             <a href="">
@@ -228,6 +228,20 @@
                 </ul>
                 <div class="clearboth"></div>
             </div><!--end content-list-item-->
+            <!-- <div class="col text-center">
+                <div class="block-27">
+                    <ul>
+                        <li><a href="services.html#">&lt;</a></li>
+                        <li class="active"><span>1</span></li>
+                        <li><a href="services.html#">2</a></li>
+                        <li><a href="services.html#">3</a></li>
+                        <li><a href="services.html#">4</a></li>
+                        <li><a href="services.html#">5</a></li>
+                        <li><a href="services.html#">&gt;</a></li>
+                    </ul>
+                </div>
+            </div> -->
+            <br>
             <div class="content-list-service">
                 <div class="row justify-content-center mb-5 pb-2 box-headline">
                     <div class="col-md-8 text-center heading-section ftco-animate">
@@ -511,6 +525,39 @@
                     alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
                 }
             });
+        });
+        $.ajax({
+            type: "GET",
+            url: window.location.origin+"/service/list?pageSize=8",
+            dataType: "json",
+            success: function (result, status, xhr) {
+                $('#ul-services').empty()
+                for(let i = 0 ; i < result.data.length; i++){
+                    var item = result.data[i]
+                    var html = `<li>
+                                    <div class="box-fullthumbnail">
+                                        <a href="">
+                                            <span class="img-fullthumbnail">
+                                                <img src="images/uploads/${item.title_img}" alt="">
+                                            </span>
+                                            <div class="contrl-item-onimg">
+                                                <span class="icon-consult">
+                                                    <img src="images/icon-math.svg" alt="">
+                                                </span>
+                                                <span class="text-consult">${item.title}</span>
+                                                <span class="box-viewmore">view more <img src="images/icon-more.svg
+                                                    " alt=""></span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li> `
+                    $('#ul-services').append(html)
+                    total = item.total
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+            }
         });
     </script>
 </body>

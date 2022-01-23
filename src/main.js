@@ -32,7 +32,7 @@ import wysiwyg from "vue-wysiwyg";
 Vue.use(wysiwyg, {
   // maxHeight: "500px",
   image: {
-    uploadURL: "http://localhost:3000/api/service/store_img",
+    uploadURL: window.location.origin+"/service/store_img",
     dropzoneOptions: {}
   },
 }); 

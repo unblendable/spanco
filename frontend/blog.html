@@ -87,7 +87,7 @@
                     <h2 class="mb-4">Latest Blog Updates</h2>
                 </div>
             </div>
-            <div class="row d-flex">
+            <div class="row d-flex" id="blog-container">
                 <div class="col-md-4 ftco-animate">
                     <div class="blog-entry">
                         <a href="blog-single.html" class="block-20"
@@ -260,7 +260,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-5">
+            <!-- <div class="row mt-5">
                 <div class="col text-center">
                     <div class="block-27">
                         <ul>
@@ -274,7 +274,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
     <footer class="ftco-footer">
@@ -460,6 +460,44 @@
     <script>eval(mod_pagespeed_WeC_GqZ9y2);</script>
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
         data-cf-beacon='{"rayId":"670b44bc8bdb2711","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.6.0","si":10}'></script>
+    <script>
+        $.ajax({
+            type: "GET",
+            url: window.location.origin+"/blog/list?pageSize=9",
+            dataType: "json",
+            success: function (result, status, xhr) {
+                $('#blog-container').empty()
+                for(let i = 0 ; i < result.data.length; i++){
+                    var item = result.data[i]
+                    console.log(item)
+                    var html = `<div class="col-md-4 ftco-animate fadeInUp ftco-animated">
+                                    <div class="blog-entry">
+                                        <a href="blog-single.html" class="block-20"
+                                            style="background-image:url('images/uploads/${item.title_img}')">
+                                        </a>
+                                        <div class="text d-block">
+                                            <div class="meta">
+                                                <p>
+                                                    <span class="box-date">
+                                                        <img src="images/icon-calendar.svg" alt="">
+                                                        Sept. 06, 2020</span>
+                                                </p>
+                                            </div>
+                                            <h3 class="heading"><a href="blog.html#">${item.title}</a>
+                                            </h3>
+                                            <p><a href="blog.html" class="btn btn-secondary py-2 px-3">${item.tag}</a></p>
+                                        </div>
+                                    </div>
+                                </div>`
+                    $('#blog-container').append(html)
+                    total = item.total
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+            }
+        });
+    </script>
 </body>
 
 </html>

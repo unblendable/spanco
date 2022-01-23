@@ -16,7 +16,11 @@ const handleResponse = function(res, data){
     })
 }
 const service_list = async function(req, res){
-    mysql.query("SELECT * FROM services", (err, result)=>{
+    let pageSize = req.query.pageSize > 0 ? +req.query.pageSize : 5
+    let page = req.query.page > 0 ? +req.query.page : 1
+    let start = (page - 1) * pageSize
+    let binding = [start, pageSize]
+    mysql.query("SELECT *, (SELECT COUNT(id) FROM services) total FROM services ORDER BY id DESC LIMIT ? , ? ", binding, (err, result)=>{
         if(err) throw err
         return handleResponse(res, result)
     })

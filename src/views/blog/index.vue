@@ -48,7 +48,17 @@
         </template>
       </el-table-column>
     </el-table>
-
+    <div align="center" style="padding-top: 30px">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        @current-page="page"
+        @current-change="onPageChange"
+        :total="total"
+        :page-size="5"
+        >
+      </el-pagination>
+    </div>
     <el-dialog :title="dialogTitle" :visible.sync="dialogForm" width="80%">
         <el-form ref="form" :model="form" label-width="120px" label-position="top">
           <el-form-item label="Title">
@@ -82,8 +92,8 @@
     </el-dialog>
 
     <el-dialog :title="''" :visible.sync="dialogView" width="80%">
-      <div align="center">
-        <el-avatar shape="square" :size="350" :src="url"></el-avatar>
+      <div align="center" style="height: 350px; overflow: hidden">
+        <img :src="url" width="100%">
       </div>
       <h3>{{ form.title }}</h3>
       <span v-html="form.body"></span>
@@ -114,7 +124,9 @@ export default {
       dialogTitle: '',
       editIndex: -1,
       dialogView: false,
-      blogs: []
+      blogs: [],
+      page: 1,
+      total: 10
     }
   },
   created(){
@@ -124,13 +136,7 @@ export default {
     this.API_URL = url.join('://')
   },
   async mounted(){
-    this.blogs = []
-    let result = await axios.get(this.API_URL+'/blog/list')
-    for(let item of result.data.data){
-      item.created_at = item.created_at.split('T')[0]
-      item.filepath = this.API_URL+'/images/uploads/'+item.title_img
-      this.blogs.push(item)
-    }
+    this.getData()
   },
   methods: {
     async submitDialog(){
@@ -233,6 +239,20 @@ export default {
       this.file = e.raw;
       this.url = URL.createObjectURL(this.file);
     },
+    async getData(){
+      this.blogs = []
+      let result = await axios.get(this.API_URL+'/blog/list?page='+this.page)
+      for(let item of result.data.data){
+        item.created_at = item.created_at.split('T')[0]
+        item.filepath = this.API_URL+'/images/uploads/'+item.title_img
+        this.blogs.push(item)
+        this.total = item.total
+      }
+    },
+    onPageChange(pageNum){
+      this.page = pageNum
+      this.getData()
+    }
   },
 }
 </script>
